@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="total">
+    <output-path>$PROJECT_DIR$/out/artifacts/total</output-path>
+    <root id="archive" name="total.jar">
+      <element id="module-output" name="total" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #cfc;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tombrus.total.Controller">
+   <children>
+      <Label fx:id="total" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="75.0" text="..." textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="tooltip" text="..." showDelay="0s" showDuration="99999s">
+               <font>
+                  <Font name="Courier" size="15.0"/>
+               </font>
+            </Tooltip>
+         </tooltip>
+      </Label>
+      <Button fx:id="refresh" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#refresh" GridPane.columnIndex="1">
+         <graphic>
+            <ImageView fitHeight="8.0" fitWidth="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" />
+      <ColumnConstraints hgrow="NEVER" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
