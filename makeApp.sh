@@ -8,7 +8,7 @@ export JAVA_HOME="$(/usr/libexec/java_home -v 16)"
       MAIN_CLASS="nl.tombrus.total.Main"
  MAIN_CLASS_FILE="out/production/total/${MAIN_CLASS//.//}.class"
         MAIN_JAR="total.jar"
-        LIB_JARS=(~/"projects/mvg-dc/mvgJson/build/libs/mvgjson-1.1.6.jar")
+        LIB_JARS=("lib/mvg-json-1.6.3.jar")
 
     JAVA_VERSION="15"
         JARS_DIR="out/artifacts/total"

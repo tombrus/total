@@ -1,23 +1,16 @@
 package nl.tombrus.total;
 
-import static nl.tombrus.total.Logger.log;
+import java.nio.file.*;
+import java.util.*;
+import java.util.concurrent.*;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import javafx.application.*;
+import javafx.event.*;
+import javafx.scene.control.*;
+import javafx.scene.paint.*;
+import nl.tombrus.total.Settings.*;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
-import javafx.scene.paint.Color;
-import nl.tombrus.total.Settings.Data;
+import static nl.tombrus.total.Logger.*;
 
 public class Controller extends Thread {
     private static final Path            SETTINGS_FILE               = Paths.get(System.getProperty("user.home")).resolve(".total.json");
@@ -116,18 +109,20 @@ public class Controller extends Thread {
 
             log(String.format("##%12.2f;%12.2f;%12.2f;", dpb.get(), epd.get(), dpt.get()));
 
-            double v1 = dpt.get() * epd.get() * data.stock.get("TSLA");
-            double v2 = dpb.get() * epd.get() * data.crypto.get("BTC");
-            double v  = v1 + v2;
+            double numTSLA = data.stock.get("TSLA");
+            double numBTC  = data.crypto.get("BTC");
+            double v1      = dpt.get() * epd.get() * numTSLA;
+            double v2      = dpb.get() * epd.get() * numBTC;
+            double total   = v1 + v2;
 
-            String mainText = String.format("%,10.0f", v);
+            String mainText = String.format("%,10.0f", total);
             String tooltipText = String.format("""
-                            %,9.0f (@%,6.0f x %4.2f)
-                            %,9.0f (@%,6.0f x %4.2f)
+                            %,9.0f = %,7.0f x %4.0f x %4.2f
+                            %,9.0f = %,7.0f x %4.2f x %4.2f
                             """,
 
-                    v1, dpt.get(), epd.get(),
-                    v2, dpb.get(), epd.get());
+                    v1, dpt.get(), numTSLA, epd.get(),
+                    v2, dpb.get(), numBTC, epd.get());
 
             return Arrays.asList(mainText, tooltipText);
         } catch (InterruptedException e) {
